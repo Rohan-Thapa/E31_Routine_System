@@ -18,6 +18,7 @@ options = [
     "Friday",
     "Saturday"
 ]
+
 routine = {
     "Sunday": [f"Time: 7:00-8:00 AM {classes[0]}", f"Time: 9:00 - 10:30 AM {classes[1]}"],
     "Monday": [f"Time: 7:00-8:00 AM {classes[2]}", f"Time: 9:00 - 10:30 AM {classes[1]}"],
