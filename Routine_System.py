@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import ttk, messagebox
-from functools import partial
 
 classes = [
     'ST4059CEM Legal and Ethical Foundations in Cyber Security',
@@ -39,17 +38,26 @@ def show():
     drop.destroy()
 
     lbl3.config(text="Class Routine", font=("Arial", 16))
+    lect = []
     for lecture in routine[day]:
-        if len(routine[day]) == 1:
-            grp1.config(cursor="hand2", text=classes[0])
-        elif len(routine[day]) == 2:
-            grp1.config(cursor="hand2", text=classes[0])
-            grp2.config(cursor="hand2", text=classes[1])
-        else:
-            messagebox.showerror("Error", "There is the error in internal communication")
+        ohh = lecture.split("AM ")
+        lect.append(ohh[1])
+    if len(routine[day]) == 1:
+        grp1.config(cursor="hand2", text=lect[0])
+    elif len(routine[day]) == 2:
+        grp1.config(cursor="hand2", text=lect[0])
+        grp2.config(cursor="hand2", text=lect[1])
+    else:
+        messagebox.showerror("Error", "There is the error in internal communication")
 
-def details(event):
-    info_text = f"Time: 7:00AM - 8:00AM\nClass: {classes[0]}\nLecturer: Manish Khanal"
+def detail1(event):
+    today = clicked.get()
+    info_text = routine[today][0]
+    messagebox.showinfo("Detail info", info_text)
+
+def detail2(event):
+    today = clicked.get()
+    info_text = routine[today][1]
     messagebox.showinfo("Detail info", info_text)
 
 def main():
@@ -77,11 +85,11 @@ def main():
 
     grp1 = Label(root, text="", fg='blue')
     grp1.grid(row=4, column=0, columnspan=4, padx=5, pady=5)
-    grp1.bind("<Button-1>", details)
+    grp1.bind("<Button-1>", detail1)
 
     grp2 = Label(root, text="", fg='blue')
     grp2.grid(row=5, column=0, columnspan=4, padx=5, pady=5)
-    grp2.bind("<Button-1>", details)
+    grp2.bind("<Button-1>", detail2)
 
     root.mainloop()
 
